@@ -1,4 +1,13 @@
 {
   "version": 1,
-  "deployAliases": {}
+  "deployAliases": {
+    "local": {
+      "url": "http://localhost:8080/graphql",
+      "keyPath": "keys/local.json",
+      "feepayerKeyPath": "/home/alpha/.cache/zkapp-cli/keys/deployer.json",
+      "feepayerAlias": "deployer",
+      "fee": "0.1",
+      "smartContract": "Game"
+    }
+  }
 }

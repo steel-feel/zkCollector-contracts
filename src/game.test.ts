@@ -37,7 +37,7 @@ describe('checkpoint 1', () => {
     let keyWitness = Tree.getWitness(Field.from(1))
 
     const txn1 = await Mina.transaction(gamerAccount, async () => {
-      await zkAppInstance.foundTreasure(Field.from(14), Field.from(15), keyWitness)
+      await zkAppInstance.foundTreasure(Field.from(2000), Field.from(3000), keyWitness)
     });
 
     await txn1.prove();

@@ -1,13 +1,27 @@
-import { MerkleTree, Poseidon, Field, MerkleMap } from "o1js"
+import { Poseidon, Field, MerkleMap } from "o1js"
 
-/// add treasure sites
 const Tree = new MerkleMap();;
 
-Tree.set(Field.from(0), Poseidon.hash([Field.from(12), Field.from(13)]));
-Tree.set(Field.from(1), Poseidon.hash([Field.from(14), Field.from(15)]));
-Tree.set(Field.from(2), Poseidon.hash([Field.from(16), Field.from(17)]));
-Tree.set(Field.from(3), Poseidon.hash([Field.from(18), Field.from(19)]));
+const chectLocs = [
+    { x: 2000, y: 3000, key: 1 },
+    { x: 2000, y: 3500, key: 2 },
+    { x: 2500, y: 3500, key: 3 },
+    { x: 2000, y: 2500, key: 4 },
+    { x: 2000, y: -2000, key: 5 },
+    { x: 2000, y: 4000, key: 6 },
+    { x: 1500, y: 3500, key: 7 },
+    { x: 1000, y: 3500, key: 8 },
+    { x: 500, y: 3500, key: 9 },
+    { x: 1000, y: 3000, key: 10 },
+    { x: -1000, y: 2000, key: 11 },
+    { x: -1500, y: 2000, key: 12 },
+    { x: -2000, y: 2100, key: 13 },
+];
+
+for ( const chest of chectLocs ) {
+    Tree.set(Field.from(chest.key), Poseidon.hash([Field.from(chest.x), Field.from(chest.y)]));
+}
 
 const initialCommitment = Tree.getRoot();
 
-export { initialCommitment, Tree }
+export { chectLocs, initialCommitment, Tree }
