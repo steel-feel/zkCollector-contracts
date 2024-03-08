@@ -1,4 +1,4 @@
-import {  Field, verify, Mina, VerificationKey, Poseidon } from "o1js"
+import {  Field, verify, Mina, VerificationKey, Poseidon, Signature } from "o1js"
 import { GameEngine, GameInput,Item } from './game_engine';
 
 describe('checkpoint 2', () => {
@@ -7,7 +7,6 @@ describe('checkpoint 2', () => {
         Local: any;
 
     beforeAll(async () => {
-
         //for ZK Program  
         const result = await GameEngine.compile({ forceRecompile: true });
         verificationKey = result.verificationKey;
@@ -15,8 +14,6 @@ describe('checkpoint 2', () => {
         const useProof = false;
         Local = Mina.LocalBlockchain({ proofsEnabled: useProof });
         Mina.setActiveInstance(Local);
-
-
 
     })
 
@@ -28,13 +25,16 @@ describe('checkpoint 2', () => {
             newItemsHash : Poseidon.hash([]),
             onChainHash : Poseidon.hash([]),
         })
-    
-        const proof0 = await GameEngine.baseCase(initGI)
+        
+        const nonce = Field(0)
+        const nonceSign = Signature.create(account1.privateKey, [nonce]  )
+
+        const proof0 = await GameEngine.baseCase(initGI,nonceSign,nonce )
 
         expect(await verify(proof0.toJSON(), verificationKey)).toEqual(true)
     } )
   
-    test("generate proof with new items", async () => {
+    test("Generate proof with new items", async () => {
         const account1 = Local.testAccounts[0];
 
         const initGI = new GameInput({
@@ -43,7 +43,9 @@ describe('checkpoint 2', () => {
             onChainHash : Poseidon.hash([]),
         })
 
-        const proof0 = await GameEngine.baseCase(initGI)
+        const nonce = Field(0)
+        const nonceSign = Signature.create(account1.privateKey, [nonce]  )
+        const proof0 = await GameEngine.baseCase(initGI,nonceSign,nonce )
 
         const newItem = new Item({
             x : Field(100), 
@@ -58,7 +60,7 @@ describe('checkpoint 2', () => {
         const proof1 = await GameEngine.addItem(  gameInput1, proof0, newItem  )
 
         expect(await verify(proof1.toJSON(), verificationKey)).toEqual(true)
-    } )
+    })
 
 
 })
