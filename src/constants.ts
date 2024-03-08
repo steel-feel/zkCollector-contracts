@@ -2,6 +2,7 @@ import { Poseidon, Field, MerkleMap } from "o1js"
 
 const Tree = new MerkleMap();;
 
+//ToDo: fetch from server
 const chectLocs = [
     { x: 2000, y: 3000, key: 1 },
     { x: 2000, y: 3500, key: 2 },

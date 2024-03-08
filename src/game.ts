@@ -22,6 +22,8 @@ export class Game extends SmartContract {
     // a commitment is a cryptographic primitive that allows us to commit to data, with the ability to "reveal" it later
     @state(Field) commitment = State<Field>();
 
+    @state(Field) mapRoot = State<Field>();
+
     //Map for storing user enrollment
     reducer = Reducer({
         actionType: UserTreasure,
@@ -76,5 +78,14 @@ export class Game extends SmartContract {
 
         this.reducer.dispatch(toEmit);
     }
+
+    @method updateTree(
+        keyWitness: MerkleMapWitness,
+        keyToChange: Field,
+        valueBefore: Field,
+        newValue: Field,
+      ) {
+
+      }
 
 }
