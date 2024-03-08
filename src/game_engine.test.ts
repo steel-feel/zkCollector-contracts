@@ -1,7 +1,7 @@
-import { AccountUpdate, Field, verify, Mina, PrivateKey, PublicKey, VerificationKey, Proof, CircuitString, Poseidon } from "o1js"
+import {  Field, verify, Mina, VerificationKey, Poseidon } from "o1js"
 import { GameEngine, GameInput,Item } from './game_engine';
 
-describe.only('checkpoint 2', () => {
+describe('checkpoint 2', () => {
 
     let verificationKey: VerificationKey,
         Local: any;
@@ -20,7 +20,7 @@ describe.only('checkpoint 2', () => {
 
     })
 
-    test.skip("First proof with empty items" , async () => {
+    test("First proof with empty items" , async () => {
         const account1 = Local.testAccounts[0];
 
         const initGI = new GameInput({
