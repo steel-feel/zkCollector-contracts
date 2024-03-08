@@ -21,8 +21,8 @@ export class Item extends Struct({
 
 }
 
-export const GameEngine = ZkProgram({
-    name: "gameengine",
+export const FrontEngine = ZkProgram({
+    name: "frontengine",
     publicInput: GameInput,
 
     methods: {
