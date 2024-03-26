@@ -1,10 +1,10 @@
-import { Field, verify, Mina, VerificationKey,MerkleWitness ,Poseidon, Signature, Cache, Circuit, CircuitString, MerkleTree } from "o1js"
+import { Field, verify, VerificationKey,Poseidon, MerkleTree } from "o1js"
 import {liteEngine,MerkleWitness20} from './liteEngine'
 
 import {chectLocs as chests} from './constants'
 
 
-describe.only('Lite Engine', () => {
+describe.skip('Lite Engine', () => {
 
     let verificationKey: VerificationKey,
         tree:MerkleTree

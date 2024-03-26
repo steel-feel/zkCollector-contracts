@@ -20,7 +20,6 @@
     "format": "prettier --write --ignore-unknown **/*",
     "test": "node  --max-old-space-size=8192 --experimental-vm-modules node_modules/jest/bin/jest.js",
     "testl": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-
     "testw": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "lint": "npx eslint src/* --fix"
   },
